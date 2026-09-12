@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Cross-component invariant
+      - name: Cross-component invariant control
         shell: bash
         run: |
-          if [[ -f a.flag && -f b.flag ]]; then
-            echo 'INTEGRATION_BROKEN=1'
+          if [[ -f c.flag && -f d.flag ]]; then
+            echo 'CONTROL_INTEGRATION_BROKEN=1'
             exit 1
           fi
-          echo 'INTEGRATION_OK=1'
+          echo 'CONTROL_INTEGRATION_OK=1'
