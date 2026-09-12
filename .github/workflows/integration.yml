@@ -9,12 +9,19 @@ jobs:
   integration:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Zero-owner Direct Merge invariant
+      - name: Checkout PR head
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Checkout current main
+        if: github.event_name != 'pull_request'
+        uses: actions/checkout@v4
+      - name: Zero-owner head-SHA Direct Merge invariant
         shell: bash
         run: |
-          if [[ -f i.flag && -f j.flag ]]; then
-            echo 'ZERO_OWNER_INTEGRATION_BROKEN=1'
+          if [[ -f k.flag && -f l.flag ]]; then
+            echo 'ZERO_OWNER_HEADSHA_INTEGRATION_BROKEN=1'
             exit 1
           fi
-          echo 'ZERO_OWNER_INTEGRATION_OK=1'
+          echo 'ZERO_OWNER_HEADSHA_INTEGRATION_OK=1'
