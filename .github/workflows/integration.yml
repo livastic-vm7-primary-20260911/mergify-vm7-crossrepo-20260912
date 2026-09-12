@@ -1,0 +1,20 @@
+name: integration
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cross-component invariant
+        shell: bash
+        run: |
+          if [[ -f a.flag && -f b.flag ]]; then
+            echo 'INTEGRATION_BROKEN=1'
+            exit 1
+          fi
+          echo 'INTEGRATION_OK=1'
