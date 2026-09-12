@@ -8,3 +8,11 @@ queue_rules:
       - check-success = integration
     merge_conditions:
       - check-success = integration
+
+pull_request_rules:
+  - name: auto queue external fork PRs
+    conditions:
+      - from-fork
+    actions:
+      queue:
+        name: default
