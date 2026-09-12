@@ -10,9 +10,12 @@ queue_rules:
       - check-success = integration
 
 pull_request_rules:
-  - name: auto queue main PRs
+  - name: auto queue connected forged scopes
     conditions:
       - base=main
+      - or:
+          - scope=connected-m
+          - scope=connected-n
     actions:
       queue:
         name: default
