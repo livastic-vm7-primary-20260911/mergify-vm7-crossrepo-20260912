@@ -10,9 +10,9 @@ queue_rules:
       - check-success = integration
 
 pull_request_rules:
-  - name: auto queue external fork PRs
+  - name: auto queue main PRs
     conditions:
-      - from-fork
+      - base=main
     actions:
       queue:
         name: default
