@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Manual-scopes Direct Merge invariant
+      - name: Zero-owner Direct Merge invariant
         shell: bash
         run: |
-          if [[ -f g.flag && -f h.flag ]]; then
-            echo 'MANUAL_SCOPES_INTEGRATION_BROKEN=1'
+          if [[ -f i.flag && -f j.flag ]]; then
+            echo 'ZERO_OWNER_INTEGRATION_BROKEN=1'
             exit 1
           fi
-          echo 'MANUAL_SCOPES_INTEGRATION_OK=1'
+          echo 'ZERO_OWNER_INTEGRATION_OK=1'
