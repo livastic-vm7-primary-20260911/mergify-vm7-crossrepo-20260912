@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Cross-component invariant control
+      - name: Explicit merge-conditions invariant
         shell: bash
         run: |
-          if [[ -f c.flag && -f d.flag ]]; then
-            echo 'CONTROL_INTEGRATION_BROKEN=1'
+          if [[ -f e.flag && -f f.flag ]]; then
+            echo 'EXPLICIT_INTEGRATION_BROKEN=1'
             exit 1
           fi
-          echo 'CONTROL_INTEGRATION_OK=1'
+          echo 'EXPLICIT_INTEGRATION_OK=1'
