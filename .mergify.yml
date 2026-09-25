@@ -1,21 +1,28 @@
-scopes:
-  source:
-    manual:
-
+merge_queue:
+  max_parallel_checks: 1
 queue_rules:
-  - name: default
+  - name: vm7-gate1-writepolicy
+    merge_method: merge
+    batch_size: 1
     queue_conditions:
-      - check-success = integration
-    merge_conditions:
-      - check-success = integration
-
+      - base = vm7-gate1-writepolicy-base-20260925
+      - title = VM7_GATE1_WRITEPOLICY_NORMALPATH_20260925
+    merge_conditions: []
 pull_request_rules:
-  - name: auto queue connected forged scopes
+  - name: VM7_GATE1_WRITEPOLICY_NORMALPATH_20260925
     conditions:
-      - base=main
-      - or:
-          - scope=connected-m
-          - scope=connected-n
+      - base = vm7-gate1-writepolicy-base-20260925
+      - title = VM7_GATE1_WRITEPOLICY_NORMALPATH_20260925
     actions:
       queue:
-        name: default
+        name: vm7-gate1-writepolicy
+merge_protections_settings:
+  reporting_method: check-runs
+  post_comment: false
+merge_protections:
+  - name: VM7_GATE1_WRITEPOLICY_NORMALPATH_20260925
+    if:
+      - base = vm7-gate1-writepolicy-base-20260925
+      - title = VM7_GATE1_WRITEPOLICY_NORMALPATH_20260925
+    success_conditions:
+      - "#commits-unverified = 0"
