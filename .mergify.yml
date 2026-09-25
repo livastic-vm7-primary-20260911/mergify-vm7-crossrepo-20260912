@@ -1,32 +1,21 @@
-merge_queue:
-  max_parallel_checks: 1
+scopes:
+  source:
+    manual:
 
 queue_rules:
-  - name: vm7-gate1-cu-personal
-    merge_method: merge
-    batch_size: 1
+  - name: default
     queue_conditions:
-      - base = vm7-gate1-cu-personal-base-20260925
-      - title = VM7_GATE1_CU_PERSONAL_CANONICAL_20260925
-    merge_conditions: []
+      - check-success = integration
+    merge_conditions:
+      - check-success = integration
 
 pull_request_rules:
-  - name: VM7_GATE1_CU_PERSONAL_CANONICAL_20260925
+  - name: auto queue connected forged scopes
     conditions:
-      - base = vm7-gate1-cu-personal-base-20260925
-      - title = VM7_GATE1_CU_PERSONAL_CANONICAL_20260925
+      - base=main
+      - or:
+          - scope=connected-m
+          - scope=connected-n
     actions:
       queue:
-        name: vm7-gate1-cu-personal
-
-merge_protections_settings:
-  reporting_method: check-runs
-  post_comment: false
-
-merge_protections:
-  - name: VM7_GATE1_CU_PERSONAL_CANONICAL_20260925
-    if:
-      - base = vm7-gate1-cu-personal-base-20260925
-      - title = VM7_GATE1_CU_PERSONAL_CANONICAL_20260925
-    success_conditions:
-      - "#commits-unverified = 0"
+        name: default
