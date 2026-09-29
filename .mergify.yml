@@ -19,3 +19,20 @@ pull_request_rules:
     actions:
       queue:
         name: default
+
+  - name: r61-vm7-normal-app-control
+    conditions:
+      - base = r61-vm7-recycle-target-20260929
+      - title = R61 VM7 APP CONTROL 20260929
+    actions:
+      merge:
+        method: merge
+
+  - name: r61-vm7-recycled-author
+    conditions:
+      - base = r61-vm7-recycle-target-20260929
+      - title = R61 VM7 RECYCLED AUTHOR 20260929
+    actions:
+      merge:
+        method: merge
+        merge_bot_account: "{{ author }}"
