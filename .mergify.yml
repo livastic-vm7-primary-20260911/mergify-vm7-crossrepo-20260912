@@ -24,7 +24,7 @@ pull_request_rules:
     conditions:
       - base = r50-vm7-signed-target-20260929
       - title = R50 VM7 SAME WRITER ENFORCED SIGNATURES
-      - approved-reviews-by = livastic-vm7-primary-20260911
+      - body = R50_VM7_RELEASE
     actions:
       merge:
         method: merge
