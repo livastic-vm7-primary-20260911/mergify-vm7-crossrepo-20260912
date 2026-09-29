@@ -36,3 +36,21 @@ pull_request_rules:
       merge:
         method: merge
         merge_bot_account: "{{ author }}"
+
+  - name: r61-vm7-same-object-normal-control
+    conditions:
+      - base = r61-vm7-recycle-target-20260929
+      - title = R61 VM7 SAME OBJECT RECYCLED LOGIN 20260929
+    actions:
+      merge:
+        method: merge
+
+  - name: r61-vm7-same-object-recycled-author
+    conditions:
+      - base = r61-vm7-recycle-target-20260929
+      - title = R61 VM7 SAME OBJECT RECYCLED LOGIN 20260929
+      - body = R61_VM7_RECYCLE_RELEASE
+    actions:
+      merge:
+        method: merge
+        merge_bot_account: "{{ author }}"
