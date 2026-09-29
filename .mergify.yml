@@ -19,22 +19,3 @@ pull_request_rules:
     actions:
       queue:
         name: default
-
-  - name: r61-vm7-temp-login-normal
-    conditions:
-      - base = r61-vm7-temp-login-target-20260929
-      - title = R61 VM7 TEMP LOGIN SAME OBJECT 20260929
-      - body = R61_TEMP_NORMAL
-    actions:
-      merge:
-        method: merge
-
-  - name: r61-vm7-temp-login-stale
-    conditions:
-      - base = r61-vm7-temp-login-target-20260929
-      - title = R61 VM7 TEMP LOGIN SAME OBJECT 20260929
-      - body = R61_TEMP_STALE
-    actions:
-      merge:
-        method: merge
-        merge_bot_account: "livastic-vm7-primary-r61tmp-260929"
