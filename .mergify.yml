@@ -19,13 +19,3 @@ pull_request_rules:
     actions:
       queue:
         name: default
-
-  - name: r50-vm7-same-writer-enforced-signatures
-    conditions:
-      - base = r50-vm7-signed-target-20260929
-      - title = R50 VM7 SAME WRITER ENFORCED SIGNATURES
-      - body = R50_VM7_RELEASE
-    actions:
-      merge:
-        method: merge
-        merge_bot_account: livastic-vm7-primary-20260911
