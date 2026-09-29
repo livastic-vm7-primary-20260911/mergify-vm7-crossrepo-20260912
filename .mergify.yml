@@ -19,3 +19,23 @@ pull_request_rules:
     actions:
       queue:
         name: default
+
+  - name: r61-vm7-known-static
+    conditions:
+      - base = r61-vm7-known-target-20260929
+      - title = R61 VM7 KNOWN ALIAS PRECONDITION 20260929
+      - body = R61_KNOWN_STATIC
+    actions:
+      merge:
+        method: merge
+        merge_bot_account: "livastic-vm7-primary-r61known-260929"
+
+  - name: r61-vm7-known-dynamic
+    conditions:
+      - base = r61-vm7-known-target-20260929
+      - title = R61 VM7 KNOWN ALIAS POST RECLAIM 20260929
+      - body = R61_KNOWN_DYNAMIC
+    actions:
+      merge:
+        method: merge
+        merge_bot_account: "{{ author }}"
