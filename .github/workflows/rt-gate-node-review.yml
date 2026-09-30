@@ -1,0 +1,16 @@
+name: VM7 RT Gate node-id trusted reviewer
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  node-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create trusted review thread by immutable PR node id
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api graphql             -f query='mutation($input:AddPullRequestReviewInput!){addPullRequestReview(input:$input){pullRequestReview{id state author{login} comments(first:5){nodes{id body author{login}}}}}}'             -F 'input[pullRequestId]=PR_kwDOUXh6ks8AAAABFz0dIA'             -F 'input[commitOID]=a58b909b6ed517c78988582fbfd27abe886788c0'             -F 'input[event]=COMMENT'             -F 'input[threads][0][path]=rt-gate-impact-20260930.txt'             -F 'input[threads][0][line]=102'             -F 'input[threads][0][side]=RIGHT'             -F 'input[threads][0][body]=VM7 TRUSTED ACTIONS REVIEWER: unresolved security concern 101 Gate1 20260930'
