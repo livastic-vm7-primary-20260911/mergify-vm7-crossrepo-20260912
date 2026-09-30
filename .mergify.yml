@@ -19,3 +19,14 @@ pull_request_rules:
     actions:
       queue:
         name: default
+
+merge_protections_settings:
+  post_comment: false
+
+merge_protections:
+  - name: VM7 R47 current-permission native harness
+    if:
+      - base = main
+      - title = VM7_R47_NATIVE_HARNESS_20260930
+    success_conditions:
+      - review-requested = livastic-vm7-secondary-20260911
