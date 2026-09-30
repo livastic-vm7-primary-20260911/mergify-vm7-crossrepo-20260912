@@ -20,22 +20,11 @@ pull_request_rules:
       queue:
         name: default
 
-  - name: r61-vm7-canon-static
+  - name: vm7 review-thread pagination native ruleset gate 20260930
     conditions:
-      - base = r61-vm7-canon-target-20260929
-      - title = R61 VM7 CANON PRE RELEASE 20260929
-      - body = R61_CANON_STATIC
+      - base = rt-gate-target-20260930
+      - author = livastic-vm7-secondary-20260911
+      - title = VM7_RT_GATE_TRIGGER_20260930
     actions:
       merge:
         method: merge
-        merge_bot_account: "livastic-vm7-r61known2-260929"
-
-  - name: r61-vm7-canon-dynamic
-    conditions:
-      - base = r61-vm7-canon-target-20260929
-      - title = R61 VM7 CANON POST RECLAIM 20260929
-      - body = R61_CANON_DYNAMIC
-    actions:
-      merge:
-        method: merge
-        merge_bot_account: "{{ author }}"
