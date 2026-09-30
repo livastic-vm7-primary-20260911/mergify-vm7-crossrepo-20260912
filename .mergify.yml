@@ -19,12 +19,3 @@ pull_request_rules:
     actions:
       queue:
         name: default
-
-  - name: vm7 review-thread pagination native ruleset gate 20260930
-    conditions:
-      - base = rt-gate-target-20260930
-      - author = livastic-vm7-primary-20260911
-      - title = VM7_RT_GATE_TRIGGER_20260930
-    actions:
-      merge:
-        method: merge
