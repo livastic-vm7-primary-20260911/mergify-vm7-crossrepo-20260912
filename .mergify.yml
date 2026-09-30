@@ -19,3 +19,16 @@ pull_request_rules:
     actions:
       queue:
         name: default
+
+merge_protections:
+  - name: R55 Gate2 manual scope base-context invariant
+    if:
+      - base = main
+      - title = R55_GATE2_RISKY_20260930
+    success_conditions:
+      - scope = docs
+      - -scope = critical
+
+merge_protections_settings:
+  reporting_method: check-runs
+  post_comment: false
