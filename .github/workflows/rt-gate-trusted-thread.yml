@@ -1,0 +1,41 @@
+name: VM7 RT Gate trusted review thread
+on:
+  workflow_dispatch:
+    inputs:
+      op:
+        description: create, resolve, or unresolve
+        required: true
+        type: choice
+        options:
+          - create
+          - resolve
+          - unresolve
+      thread_id:
+        description: GraphQL review thread id for resolve/unresolve
+        required: false
+        type: string
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  trusted-thread:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply trusted review-thread operation
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OP: ${{ inputs.op }}
+          THREAD_ID: ${{ inputs.thread_id }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          if [ "$OP" = create ]; then
+            gh api -X POST "repos/$REPO/pulls/57/comments"               -f body='VM7 TRUSTED REVIEWER: unresolved security concern 101 Gate1 20260930'               -f commit_id='90c91e040a0c1a83c2ec11b3bb2bf13ecb33b434'               -f path='rt-gate-impact-20260930.txt'               -F line=102               -f side='RIGHT'
+          elif [ "$OP" = resolve ]; then
+            gh api graphql               -f query='mutation($id:ID!){resolveReviewThread(input:{threadId:$id}){thread{id isResolved}}}'               -f id="$THREAD_ID"
+          elif [ "$OP" = unresolve ]; then
+            gh api graphql               -f query='mutation($id:ID!){unresolveReviewThread(input:{threadId:$id}){thread{id isResolved}}}'               -f id="$THREAD_ID"
+          else
+            echo "unsupported op" >&2
+            exit 2
+          fi
