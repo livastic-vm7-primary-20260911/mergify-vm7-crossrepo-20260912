@@ -30,7 +30,7 @@ jobs:
         run: |
           set -euo pipefail
           if [ "$OP" = create ]; then
-            gh api -X POST "repos/$REPO/pulls/57/comments"               -f body='VM7 TRUSTED REVIEWER: unresolved security concern 101 Gate1 20260930'               -f commit_id='90c91e040a0c1a83c2ec11b3bb2bf13ecb33b434'               -f path='rt-gate-impact-20260930.txt'               -F line=102               -f side='RIGHT'
+            gh api -X POST "repos/$REPO/pulls/59/comments"               -f body='VM7 TRUSTED REVIEWER: unresolved security concern 101 Gate1 20260930'               -f commit_id='468cb0a2b1f9d3d56d9600a78f9b00c5cf4812cd'               -f path='rt-gate-samerepo-impact-20260930.txt'               -F line=102               -f side='RIGHT'
           elif [ "$OP" = resolve ]; then
             gh api graphql               -f query='mutation($id:ID!){resolveReviewThread(input:{threadId:$id}){thread{id isResolved}}}'               -f id="$THREAD_ID"
           elif [ "$OP" = unresolve ]; then
