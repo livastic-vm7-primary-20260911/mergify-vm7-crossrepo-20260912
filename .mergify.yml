@@ -19,13 +19,3 @@ pull_request_rules:
     actions:
       queue:
         name: default
-
-  - name: VM7 R46 canonical delete protected head
-    conditions:
-      - state = closed
-      - head = vm7-r46-canon-20261001
-      - author = livastic-vm7-secondary-20260911
-      - title = VM7_R46_CANON_20261001
-    actions:
-      delete_head_branch:
-        force: false
