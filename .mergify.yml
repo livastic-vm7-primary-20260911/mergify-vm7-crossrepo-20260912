@@ -20,11 +20,12 @@ pull_request_rules:
       queue:
         name: default
 
-  - name: VM7 R23 AppID slug gate merge 261001
+  - name: VM7 R23 manual app slug gate merge 261001
     conditions:
       - base = vm7-r23-base-261001
       - head = vm7-r23-head-261001
       - title = VM7_R23_APPID_SLUG_GATE_261001
+      - check-success = @vm7-r23-anchor-261001-x7k9/vm7-r23-manual
     actions:
       merge:
         method: merge
